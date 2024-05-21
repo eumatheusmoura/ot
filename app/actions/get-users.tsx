@@ -1,7 +1,7 @@
 "use server";
-import { UserResponse } from "../types";
+import { User } from "../types";
 
-export async function getUsers(): Promise<UserResponse[]> {
+export async function getUsers(): Promise<User[]> {
   const baseUrl = process.env.BASE_URL;
 
   try {
@@ -9,7 +9,7 @@ export async function getUsers(): Promise<UserResponse[]> {
     if (!req.ok) {
       throw new Error(`HTTP error! status: ${req.status}`);
     }
-    const res: UserResponse[] = await req.json();
+    const res: User[] = await req.json();
     return res;
   } catch (error) {
     console.error("Erro ao buscar usuários:", error);
