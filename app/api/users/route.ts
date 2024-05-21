@@ -6,7 +6,7 @@ export async function GET() {
     await dbConnect();
     const usuarios = await Usuarios.find();
     return Response.json(usuarios);
-  } catch (error) {
+  } catch (error: unknown) {
     return Response.json(error);
   }
 }
@@ -22,7 +22,7 @@ export async function DELETE(request: Request) {
       return Response.json({ error: "Usuário não encontrado" });
     }
     return Response.json({ message: "Usuário deletado com sucesso" });
-  } catch (error) {
+  } catch (error: unknown) {
     return Response.json(error);
   }
 }
@@ -74,7 +74,7 @@ export async function POST(request: Request) {
 
     const usuarioSalvo = await novoUsuario.save();
     return Response.json({ message: "Usuário inserido!", usuarioSalvo });
-  } catch (error) {
+  } catch (error: unknown) {
     return Response.json({
       error: error.message || "Algum erro ocorreu ao salvar o usuário.",
     });
