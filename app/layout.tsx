@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "../components/header/page";
+import Header from "./components/header/page";
 import type { Viewport } from "next";
 
 export const viewport: Viewport = {
@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex min-h-screen flex-col">
           <Header />
-          <main className="bg-[#f5f6f8] flex-1">{children}</main>
+          <main className=" flex-1">{children}</main>
         </div>
       </body>
     </html>
