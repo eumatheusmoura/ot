@@ -8,7 +8,6 @@ export default function UserAvatar(): ReactElement {
         <AvatarImage src={"/images/user-image.jpeg"} alt="Avatar" />
         <AvatarFallback>MM</AvatarFallback>
       </Avatar>
-      {/* <span className="text-sm sm:hidden">Matheus Moura</span> */}
       <span className="hidden sm:inline text-sm">Matheus Moura</span>
     </section>
   );
