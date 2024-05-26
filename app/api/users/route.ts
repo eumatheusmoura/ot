@@ -7,7 +7,13 @@ export async function GET() {
     const usuarios = await Usuarios.find();
     return Response.json(usuarios);
   } catch (error: unknown) {
-    return Response.json(error);
+    return Response.json(
+      {
+        error:
+          (error as Error).message || "Ocorreu um erro ao buscar o usuário.",
+      },
+      { status: 500 }
+    );
   }
 }
 
@@ -23,7 +29,13 @@ export async function DELETE(request: Request) {
     }
     return Response.json({ message: "Usuário deletado com sucesso" });
   } catch (error: unknown) {
-    return Response.json(error);
+    return Response.json(
+      {
+        error:
+          (error as Error).message || "Ocorreu um erro ao excluir o usuário.",
+      },
+      { status: 500 }
+    );
   }
 }
 
@@ -75,8 +87,12 @@ export async function POST(request: Request) {
     const usuarioSalvo = await novoUsuario.save();
     return Response.json({ message: "Usuário inserido!", usuarioSalvo });
   } catch (error: unknown) {
-    return Response.json({
-      error: error.message || "Algum erro ocorreu ao salvar o usuário.",
-    });
+    return Response.json(
+      {
+        error:
+          (error as Error).message || "Ocorreu um erro ao inserir o usuário.",
+      },
+      { status: 500 }
+    );
   }
 }
