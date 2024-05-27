@@ -26,10 +26,6 @@ export function ExportToCSVButton({ table }: ExportToCSVProps) {
         <DownloadIcon className="mr-2 size-4" aria-hidden="true" />
         Exportar CSV
       </Button>
-      {/**
-       * Other actions can be added here.
-       * For example, import, view, etc.
-       */}
     </div>
   );
 }
