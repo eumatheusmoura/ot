@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header/page";
+import { Toaster } from "@/components/ui/sonner";
 import type { Viewport } from "next";
 
 export const viewport: Viewport = {
@@ -29,6 +30,7 @@ export default function RootLayout({
           <Header />
           <main className=" flex-1">{children}</main>
         </div>
+        <Toaster position="top-center" />
       </body>
     </html>
   );
