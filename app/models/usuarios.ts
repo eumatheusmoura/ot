@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { User as UserType } from "@/app/types/index";
 
 const userSchema = new mongoose.Schema({
-  id: Number,
+  id: { type: Number, index: true, unique: true, required: true },
   nome: String,
   sobrenome: String,
   email: String,
