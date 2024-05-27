@@ -11,7 +11,6 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { toast } from "sonner";
 import { EllipsisVertical, Pencil, Trash } from "lucide-react";
 import { removeUser } from "@/app/actions/remove-wallet";
 
@@ -30,10 +30,11 @@ const enum Dialogs {
 
 const DialogActions: React.FC<{ user: number }> = ({ user }) => {
   const [dialog, setDialog] = useState();
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <>
-      <Dialog>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -98,7 +99,7 @@ const DialogActions: React.FC<{ user: number }> = ({ user }) => {
                     Cancelar
                   </Button>
                 </DialogClose>
-                <Button type="submit">Adicionar</Button>
+                <Button type="submit">Editar</Button>
               </DialogFooter>
             </>
           ) : (
@@ -109,7 +110,9 @@ const DialogActions: React.FC<{ user: number }> = ({ user }) => {
                   <span>Excluir Carteira</span>
                 </DialogTitle>
                 <DialogDescription className="text-center">
-                  <p>Tem certeza que deseja excluir essa Carteira?</p>
+                  <p className="mt-2">
+                    Tem certeza que deseja excluir essa Carteira?
+                  </p>
                   <p>Esta ação não poderá ser desfeita.</p>
                 </DialogDescription>
               </DialogHeader>
@@ -128,6 +131,8 @@ const DialogActions: React.FC<{ user: number }> = ({ user }) => {
                   className="w-full"
                   onClick={async () => {
                     await removeUser(user);
+                    setDialogOpen(false);
+                    toast.success("Carteira Excluída");
                   }}
                 >
                   Excluir
