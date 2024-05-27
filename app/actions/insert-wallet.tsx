@@ -1,5 +1,4 @@
 "use server";
-
 import { revalidatePath } from "next/cache";
 import { User } from "../types";
 const baseUrl = process.env.BASE_URL;
